@@ -16,6 +16,9 @@ const customerSchema = mongoose.Schema({
     required: true,
     minlength: 10,
     maxlength: 12,
+    get: function (value) {
+      return `+91 ${value}`;
+    }
   }
 });
 

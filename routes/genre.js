@@ -2,10 +2,10 @@ const express = require('express');
 const Joi = require('joi');
 const router = express.Router();
 
-const modelGenre = require('../models/genre');
+const genreModel = require('../models/genre');
 
 router.get('/', (req, res) => {
-  modelGenre.get()
+  genreModel.get()
     .then((data) => {
       res.send(data);
     }).catch((error) => {
@@ -19,7 +19,7 @@ router.post('/', (req, res) => {
     return res.status(400).send(error.details[0].message);
   }
 
-  modelGenre.create(req.body)
+  genreModel.create(req.body)
     .then((data) => {
       res.send(data);
     }).catch((error) => {
@@ -30,7 +30,7 @@ router.post('/', (req, res) => {
     });
 });
 
-router.put('/:id', (req, res) => {
+router.patch('/:id', (req, res) => {
 
   const { id } = req.params;
   const data  = req.body || {};
@@ -38,7 +38,7 @@ router.put('/:id', (req, res) => {
   if (error) {
     return res.status(400).send(error.details[0].message);
   }
-  modelGenre.update(id, data)
+  genreModel.update(id, data)
     .then((data) => {
       res.send(data);
     }).catch((error) => {
@@ -52,7 +52,7 @@ router.put('/:id', (req, res) => {
 
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
-  modelGenre.del(id)
+  genreModel.del(id)
     .then((data) => {
       res.send(data);
     }).catch((error) => {

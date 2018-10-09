@@ -4,6 +4,7 @@ const dotenv = require('dotenv');
 
 const genres = require('./routes/genre');
 const customer = require('./routes/customer');
+const user = require('./routes/user');
 
 /**
  * Start server and
@@ -40,6 +41,7 @@ app.use(function(req, res, next) {
  */
 app.use('/api/genres', genres);
 app.use('/api/customers', customer);
+app.use('/api/users', user);
 
 app.get('/', (req, res) => {
   res.send('Its working');
